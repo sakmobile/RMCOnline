@@ -158,5 +158,13 @@ class work_model extends CI_Model
      
        
     }
+    function del_job($id)
+    {
+        $sql_query = "DELETE FROM `job` WHERE  `Job work ID` = ?";
+  
+        $query =  $this->db->query($sql_query, array($id));
+     
+       
+    }
     
 }

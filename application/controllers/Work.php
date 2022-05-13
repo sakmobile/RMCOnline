@@ -17,7 +17,7 @@ class Work extends CI_Controller
 				'username' => $this->session->name
 
 			];
-			$name = ' นาย' . $this->session->name;
+			$name = ' '.$this->session->name;
 			$data['countwork_new'] = $this->work_model->get_work_new($name, "งานใหม่");
 			$data['countwork_Success'] = $this->work_model->get_work_new($name, "งานเสร็จส่งคืน");
 			$data['countwork_carryout'] = $this->work_model->get_work_new($name, "อยู่ระหว่างดำเนินการ");
@@ -29,7 +29,7 @@ class Work extends CI_Controller
 			$data['success'] = $this->work_model->get_success($name, $status);
 			$data['workking'] = $this->work_model->get_workking($name, $status1);
 			$data['des'] = $this->work_model->get_des($name, $status2);
-
+    
 			$this->load->view('/layout/template', $data);
 		}
 	}
@@ -78,5 +78,11 @@ class Work extends CI_Controller
 			}
 			echo json_encode($new_array);
 		}
+	}
+	public function deleteJob(){
+		$id = $this->input->post('j_id');
+		$this->work_model->del_job($id);
+		$success = 'success';
+		echo $success;
 	}
 }

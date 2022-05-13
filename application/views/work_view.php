@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
@@ -94,6 +95,7 @@
                     <thead>
                         <tr role="row" class="info">
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 1%;">ID</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ครุภัณฑ์</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">หน่วยงานที่เเจ้ง</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ความเร่งด่วน</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">รายละเอียด</th>
@@ -111,6 +113,10 @@
                                     <td>
                                         <?php
                                         echo $row->JOBNUMBER; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $row->Equipment; ?>
                                     </td>
                                     <td>
                                         <?php echo $row->Section; ?>
@@ -139,6 +145,7 @@
                                     </td>
                                     <td>
                                         <button onclick="get_a_job('<?php echo $row->$job_id ?>')" class="btn btn-primary "><i class="far fa-check-circle"></i> รับงาน</button>
+                                        <button onclick="deleJob('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-danger "><i class="fas fa-trash-alt"></i> ลบ</button>
                                     </td>
                                 </tr>
                         <?php }
@@ -163,6 +170,7 @@
                         <tr role="row" class="info">
                         <tr role="row" class="info">
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 1%;">ID</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ครุภัณฑ์</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">หน่วยงานที่เเจ้ง</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ความเร่งด่วน</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">รายละเอียด</th>
@@ -183,76 +191,8 @@
                                         echo $row->JOBNUMBER; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row->Section; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row->level; ?>
-                                    </td>
-                                    <td>
                                         <?php
-                                        $Text_Paper = 'Text Paper';
-                                        echo $row->$Text_Paper;
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row->Cause; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row->Boss; ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        $Man_Repair = 'Man Repair';
-                                        $job_id = 'JOB Work ID';
-                                        echo $row->$Man_Repair;
-                                        ?>
-                                    </td>
-                                    <td>
-                                    <button onclick="showModel('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-primary "><i class="far fa-check-circle"></i> เลือก</button>
-                                    <a href="<?php echo base_url() ?>print/<?php echo $row->$job_id; ?>" target="_blank" class="btn btn-primary "><i class="fas fa-print"></i> พิมพ์</a>
-                                </td>
-
-                                </tr>
-                        <?php }
-                        } ?>
-
-
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-
-
-        <!-- card new -->
-        <div class="card " id="working">
-            <div class="card-header bg-warning">
-                <h3 class="card-title">อยู่ระหว่างดำเนินการ</h3>
-            </div>
-
-            <div class="card-body">
-                <table id="example7" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                    <thead>
-                        <tr role="row" class="info">
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 1%;">ID</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">หน่วยงานที่เเจ้ง</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ความเร่งด่วน</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">รายละเอียด</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">สาเหตุ</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ผู้เเจ้ง</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ช่าง</th>
-                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">--</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($workking != false) {
-                            foreach ($workking as $row) { ?>
-                                <tr>
-                                    <td>
-                                        <?php
-                                        echo $row->JOBNUMBER; ?>
+                                        echo $row->Equipment; ?>
                                     </td>
                                     <td>
                                         <?php echo $row->Section; ?>
@@ -281,7 +221,11 @@
                                     </td>
                                     <td>
                                         <button onclick="showModel('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-primary "><i class="far fa-check-circle"></i> เลือก</button>
+
+                                        <a href="<?php echo base_url() ?>print/<?php echo $row->$job_id; ?>" target="_blank" class="btn btn-primary "><i class="fas fa-print"></i> พิมพ์</a>
+                                        <button onclick="deleJob('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-danger "><i class="fas fa-trash-alt"></i> ลบ</button>
                                     </td>
+
                                 </tr>
                         <?php }
                         } ?>
@@ -295,17 +239,18 @@
         </div>
 
 
-
-        <div class="card " id="des">
-            <div class="card-header bg-danger">
-                <h3 class="card-title">แทงชำรุด</h3>
+        <!-- card new -->
+        <div class="card " id="working">
+            <div class="card-header bg-warning">
+                <h3 class="card-title">อยู่ระหว่างดำเนินการ</h3>
             </div>
 
             <div class="card-body">
-                <table id="example8" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <table id="example7" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                         <tr role="row" class="info">
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 1%;">ID</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ครุภัณฑ์</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">หน่วยงานที่เเจ้ง</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ความเร่งด่วน</th>
                             <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">รายละเอียด</th>
@@ -317,12 +262,16 @@
                     </thead>
                     <tbody>
                         <?php
-                        if ($des != false) {
-                            foreach ($des as $row) { ?>
+                        if ($workking != false) {
+                            foreach ($workking as $row) { ?>
                                 <tr>
                                     <td>
                                         <?php
                                         echo $row->JOBNUMBER; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $row->Equipment; ?>
                                     </td>
                                     <td>
                                         <?php echo $row->Section; ?>
@@ -350,9 +299,87 @@
                                         ?>
                                     </td>
                                     <td>
-                                    <button onclick="showModel('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-primary "><i class="far fa-check-circle"></i> เลือก</button>
-                                    <a href="<?php echo base_url() ?>print/<?php echo $row->$job_id; ?>" target="_blank" class="btn btn-primary "><i class="fas fa-print"></i> พิมพ์</a>
-                                </td>
+
+                                        <button onclick="showModel('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-primary "><i class="far fa-check-circle"></i> เลือก</button>
+                                        <button onclick="deleJob('<?php echo $row->$job_id; ?>')" class="btn btn-danger "><i class="fas fa-trash-alt"></i> ลบ</button>
+                                    </td>
+                                </tr>
+                        <?php }
+                        } ?>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card " id="des">
+            <div class="card-header bg-danger">
+                <h3 class="card-title">แทงชำรุด</h3>
+            </div>
+
+            <div class="card-body">
+                <table id="example8" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <thead>
+                        <tr role="row" class="info">
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 1%;">ID</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ครุภัณฑ์</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">หน่วยงานที่เเจ้ง</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ความเร่งด่วน</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">รายละเอียด</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">สาเหตุ</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ผู้เเจ้ง</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ช่าง</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">--</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($des != false) {
+                            foreach ($des as $row) { ?>
+                                <tr>
+                                    <td>
+                                        <?php
+                                        echo $row->JOBNUMBER; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $row->Equipment; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->Section; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->level; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $Text_Paper = 'Text Paper';
+                                        echo $row->$Text_Paper;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->Cause; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->Boss; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $Man_Repair = 'Man Repair';
+                                        $job_id = 'JOB Work ID';
+                                        echo $row->$Man_Repair;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <button onclick="showModel('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-primary "><i class="far fa-check-circle"></i> เลือก</button>
+                                        <a href="<?php echo base_url() ?>print/<?php echo $row->$job_id; ?>" target="_blank" class="btn btn-primary "><i class="fas fa-print"></i> พิมพ์</a>
+                                        <button onclick="deleJob('<?php echo $row->$job_id; ?>','<?php echo $row->State_work; ?>')" class="btn btn-danger "><i class="fas fa-trash-alt"></i> ลบ</button>
+                                    </td>
                                 </tr>
                         <?php }
                         } ?>
@@ -383,40 +410,40 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                    <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">ชื่ออะไหร่</label>
-                            <input type="text" class="form-control" id="name" placeholder="ชื่ออะไหร่">
-                            <input type="hidden" class="form-control" id="job_id">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">ชื่ออะไหร่</label>
+                                    <input type="text" class="form-control" id="name" placeholder="ชื่ออะไหร่">
+                                    <input type="hidden" class="form-control" id="job_id">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">จำนวน</label>
+                                    <input type="text" class="form-control" id="count" placeholder="จำนวน">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">ราคา/หน่วย</label>
+                                    <input type="text" class="form-control" id="price" placeholder="ราคา">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>สถานะ</label>
+                                    <select class="form-control select2" style="width: 100%;" id="status">
+                                        <option value="1">อยู่ระหว่างดำเนินการ</option>
+                                        <option value="2">งานเสร็จส่งคืน</option>
+                                        <option value="3">แทงชำรุด</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">จำนวน</label>
-                            <input type="text" class="form-control" id="count" placeholder="จำนวน">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">ราคา/หน่วย</label>
-                            <input type="text" class="form-control" id="price" placeholder="ราคา">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                    <div class="form-group">
-                            <label>สถานะ</label>
-                            <select class="form-control select2" style="width: 100%;" id="status">
-                                <option value="1">อยู่ระหว่างดำเนินการ</option>
-                                <option value="2">งานเสร็จส่งคืน</option>
-                                <option value="3">แทงชำรุด</option>
-                            </select>
-                        </div>
-                    </div>
-                    </div>
                         <button type="button" onclick="additem()" class="btn btn-primary">เพิ่ม</button>
                     </div>
- 
+
                 </div>
                 <br>
                 <div class="card">
@@ -527,42 +554,43 @@
         });
     }
     var list = [];
-    function showModel(id,status) {
+
+    function showModel(id, status) {
         console.log(status);
         $('#modelstatus').modal('show');
         $("#job_id").val(id);
-        $("#title_model").html("จัดการ : "+status);
-        if(status == "อยู่ระหว่างดำเนินการ"){
-        
-           
+        $("#title_model").html("จัดการ : " + status);
+        if (status == "อยู่ระหว่างดำเนินการ") {
+
+
         }
-        if(status == "งานเสร็จส่งคืน"){
-           
-            
+        if (status == "งานเสร็จส่งคืน") {
+
+
         }
-       
+
         $.ajax({
             url: './Work/get_item',
             type: 'post',
             data: {
-                id:id,   
+                id: id,
             },
             success: function(response) {
-              // console.log(response);
+                // console.log(response);
                 const obj = JSON.parse(response);
-               // console.log(obj);
-               if(obj[0].error){
-                toastr["warning"]("ยังไม่มีอะไหร่ในรายการซ่อมนี้ ..........");
-                  }else{
-                   
+                // console.log(obj);
+                if (obj[0].error) {
+                    toastr["warning"]("ยังไม่มีอะไหร่ในรายการซ่อมนี้ ..........");
+                } else {
+
                     list = obj;
-                  }
-           
-        console.log(list);
-        
-        var html = '';
-        for (let i = 0; i < list.length; i++) {
-            html += `<tr>
+                }
+
+                console.log(list);
+
+                var html = '';
+                for (let i = 0; i < list.length; i++) {
+                    html += `<tr>
              <td>${i+1}</td>
             <td>${list[i].id}</td>
             <td>${list[i].name}</td>
@@ -571,40 +599,40 @@
             <td>${list[i].price * list[i].count}</td>
             <td><button onclick="removeitem('${list[i].name}')" type="button" class="btn btn-primary">ลบรายการ</button></td>
             </tr>`;
-        }
-        $('#listdate').html(html);
-             }
+                }
+                $('#listdate').html(html);
+            }
         });
     }
-    
+
 
     function additem() {
         var _id = $("#job_id").val();
         var _name = $("#name").val();
         var _count = $("#count").val();
         var _price = $("#price").val();
-        if(_name == '' || _count == '' || _price == ''){
+        if (_name == '' || _count == '' || _price == '') {
             toastr["warning"]("กรุณากรอกข้อมูลก่อนเพิ่มรายการ...");
-        }else{
-        var pass = true;
-        for (let i = 0; i < list.length; i++) {
-            if (list[i].name == _name) {
-                list[i].count++;
-                pass = false;
+        } else {
+            var pass = true;
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].name == _name) {
+                    list[i].count++;
+                    pass = false;
+                }
             }
-        }
-        if (pass) {
-            list.push({
-                id:_id,
-                price:_price,
-                name: _name,
-                count: _count
-            })
-        }
-        console.log(list);
-        var html = '';
-        for (let i = 0; i < list.length; i++) {
-            html += `<tr>
+            if (pass) {
+                list.push({
+                    id: _id,
+                    price: _price,
+                    name: _name,
+                    count: _count
+                })
+            }
+            console.log(list);
+            var html = '';
+            for (let i = 0; i < list.length; i++) {
+                html += `<tr>
              <td>${i+1}</td>
             <td>${list[i].id}</td>
             <td>${list[i].name}</td>
@@ -613,15 +641,15 @@
             <td>${list[i].price * list[i].count}</td>
             <td><button onclick="removeitem('${list[i].name}')" type="button" class="btn btn-primary">ลบรายการ</button></td>
             </tr>`;
+            }
+
+
+
+            $('#listdate').html(html);
+            $("#name").val('');
+            $("#count").val('');
+            $("#price").val('');
         }
-
-
-
-        $('#listdate').html(html);
-        $("#name").val('');
-        $("#count").val('');
-        $("#price").val('');
-    }
     }
 
     function removeitem(name) {
@@ -652,27 +680,63 @@
     }
 
     function btn_spair() {
-       var _status = $( "#status option:selected" ).text();
-       var _id = $("#job_id").val();
+        var _status = $("#status option:selected").text();
+        var _id = $("#job_id").val();
         $.ajax({
             url: './Work/add_item',
             type: 'post',
             data: {
-                id:_id,
+                id: _id,
                 dataarray: list,
-                status :_status
+                status: _status
             },
             success: function(response) {
                 console.log(response);
-                 if (response) {
-                     toastr["success"]("บันทึกข้อมูลสำเร็จ");
-                     location.reload();
-                 }
-                 if (response == 'error') {
-                     toastr["warning"]("เกิดข้อผิดพลาด !......");
-                 }
+                if (response) {
+                    toastr["success"]("บันทึกข้อมูลสำเร็จ");
+                    location.reload();
+                }
+                if (response == 'error') {
+                    toastr["warning"]("เกิดข้อผิดพลาด !......");
+                }
             }
         });
-     
+
+    }
+
+    function deleJob(id) {
+        var mss = "คุณกำลังลบงานรหัส " + id + " ยืนยันอีกครั้งเพื่อลบงานนี้"
+        Swal.fire({
+            title: 'ยืนยันการลบข้อมูล?',
+            text: mss,
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ลบ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: './Work/deleteJob',
+                    type: 'post',
+                    data: {
+                        j_id: id
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response == 'success') {
+                            toastr["success"]("บันทึกข้อมูลสำเร็จ");
+                            location.reload();
+                        }
+                        if (response == 'error') {
+                            toastr["warning"]("เกิดข้อผิดพลาด !......");
+                        }
+                    }
+                });
+
+            }
+        })
+
     }
 </script>

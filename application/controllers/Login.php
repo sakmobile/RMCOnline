@@ -54,9 +54,10 @@ class Login extends CI_Controller
                     $this->session->set_userdata($sess_data);
             //     //      // $this->session->t_name;
                   // print_r($this->session->all_userdata());
-                  $member = array("เตชสิทธิ์ กำเนิด", "นายเอกชัย สุภาพันธ์", "วีรชัย อ่อนมณี", "นิวัฒน์ สุกวัน");
-                  $result_array   = array_search($this->session->name, $member);
-                  if ($result_array != FALSE) { 
+                  $member = array(275, 4, 227, 274);
+                  $result_array   = array_search($this->session->id, $member);
+                 // print_r($this->session->name);
+                 if ($this->session->id == 275 || $this->session->id == 4 ||$this->session->id == 227 || $this->session->id == 274 )  { 
                     redirect('Work', 'refresh');
                   }else{
                     redirect('home', 'refresh');

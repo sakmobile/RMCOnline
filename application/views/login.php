@@ -25,7 +25,7 @@
         </form>
         <br>
         <br>
-       <div class="signup"> RMC-Online Version 2.0.0 
+       <div class="signup"> RMC-Online Version 2.0.0 / 2022-05-06
        <br>
        เบราว์เซอร์ที่แนะนำ
        <br>

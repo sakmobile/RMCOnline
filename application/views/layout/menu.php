@@ -29,10 +29,10 @@
 
         <?php
 
-        $member = array("เตชสิทธิ์ กำเนิด", "นายเอกชัย สุภาพันธ์", "วีรชัย อ่อนมณี", "นิวัฒน์ สุกวัน");
-        $result_array   = array_search($this->session->name, $member);
-
-        if ($result_array != FALSE) {  ?>
+        $member = array(275, 4, 227, 274);
+        $result_array   = array_search($this->session->id, $member);
+        
+        if ($this->session->id == 275 || $this->session->id == 4 ||$this->session->id == 227 || $this->session->id == 274 ) {  ?>
           <li class="nav-header">สำหรับช่าง</li>
           <li class="nav-item">
             <a href="<?php echo base_url() ?>Work" class="nav-link <?php if ($menu == "work") {

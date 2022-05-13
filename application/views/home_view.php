@@ -222,7 +222,7 @@
                                     <?php
                                     if ($row->State_work == 'งานใหม่') { ?>
                                         <div class="badge rounded-pill bg-info " style="padding: 15%;">
-                                      <h3>  งานใหม่ </h3>
+                                      งานใหม่ 
                                         </div>
                                     <?php  } elseif ($row->State_work == "งานเสร็จส่งคืน") { ?>
                                         <div class="badge rounded-pill bg-success " style="padding: 15%;">

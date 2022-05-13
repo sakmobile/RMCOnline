@@ -192,14 +192,9 @@
           $('#Noid').val(item.Noid);
           $('#SERIAL_NO').val(item.SERIAL_NO);
         });
-
-
         //$('.body-data').html(response);
-
         // Display Modal
         // $('#model_p').modal('show'); 
-
-
       }
     });
   }
