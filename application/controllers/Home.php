@@ -61,49 +61,49 @@ class Home extends CI_Controller
 
 
 			//$this->job_model->save($data);
-			// if ($compe == 1) {
+			 if ($compe == 1) {
 
 			$success = 'success';
 			echo $success;
-			// 	$message =
-			// 		"\n" .
-			// 		'วันที่แจ้ง: ' .
-			// 		$datenow .
-			// 		"\n" .
-			// 		'ผู้แจ้ง: ' .
-			// 		$this->input->post('boss') .
-			// 		"\n" .
-			// 		'เบอร์โทร : ' .
-			// 		$to .
-			// 		"\n" .
-			// 		'หน่วยงานที่แจ้ง: ' .
-			// 		$this->input->post('section') .
-			// 		"\n" .
-			// 		'ครุภัณฑ์: ' .
-			// 		$this->input->post('name') .
-			// 		"\n" .
-			// 		'ยี่ห้อ/รุ่น: ' .
-			// 		$this->input->post('Model') .
-			// 		"\n" .
-			// 		'ความเร่งด่วน: ' .
-			// 		$this->input->post('lavel') .
-			// 		"\n" .
-			// 		'แจ้งช่าง: ' .
-			// 		$this->input->post('man_repair') .
-			// 		"\n" .
-			// 		'สาเหต/อาการ: ' .
-			// 		$this->input->post('cause') .
-			// 		"\n" .
-			// 		'รายละเอียด/อุปกรณ์: ' .
-			// 		$this->input->post('text_paper') .
-			// 		"\n";
-			// 	$this->sendlinemesg();
-			// 	header('Content-Type: text/html; charset=utf8');
-			// 	$res = notify_message($message);
-			// } else {
-			// 	$error = "error";
-			// 	echo $error;
-			// }
+				$message =
+					"\n" .
+					'วันที่แจ้ง: ' .
+					$datenow .
+					"\n" .
+					'ผู้แจ้ง: ' .
+					$this->input->post('boss') .
+					"\n" .
+					'เบอร์โทร : ' .
+					$to .
+					"\n" .
+					'หน่วยงานที่แจ้ง: ' .
+					$this->input->post('section') .
+					"\n" .
+					'ครุภัณฑ์: ' .
+					$this->input->post('name') .
+					"\n" .
+					'ยี่ห้อ/รุ่น: ' .
+					$this->input->post('Model') .
+					"\n" .
+					'ความเร่งด่วน: ' .
+					$this->input->post('lavel') .
+					"\n" .
+					'แจ้งช่าง: ' .
+					$this->input->post('man_repair') .
+					"\n" .
+					'สาเหต/อาการ: ' .
+					$this->input->post('cause') .
+					"\n" .
+					'บันทึกส่งซ่อม: ' .
+					$this->input->post('text_paper') .
+					"\n";
+				$this->sendlinemesg();
+				header('Content-Type: text/html; charset=utf8');
+				$res = notify_message($message);
+			} else {
+				$error = "error";
+				echo $error;
+			}
 		}
 	}
 
