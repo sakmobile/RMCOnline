@@ -556,7 +556,7 @@
     var list = [];
 
     function showModel(id, status) {
-        console.log(status);
+        console.log(id);
         $('#modelstatus').modal('show');
         $("#job_id").val(id);
         $("#title_model").html("จัดการ : " + status);
@@ -581,16 +581,27 @@
                 // console.log(obj);
                 if (obj[0].error) {
                     toastr["warning"]("ยังไม่มีอะไหร่ในรายการซ่อมนี้ ..........");
+                    var html = '';
+                    for (let i = 0; i < list.length; i++) {
+                        html += `<tr>
+             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>`;
+                    }
+                    $('#listdate').html(html);
                 } else {
 
                     list = obj;
-                }
+                    console.log(list);
 
-                console.log(list);
-
-                var html = '';
-                for (let i = 0; i < list.length; i++) {
-                    html += `<tr>
+                    var html = '';
+                    for (let i = 0; i < list.length; i++) {
+                        html += `<tr>
              <td>${i+1}</td>
             <td>${list[i].id}</td>
             <td>${list[i].name}</td>
@@ -599,8 +610,11 @@
             <td>${list[i].price * list[i].count}</td>
             <td><button onclick="removeitem('${list[i].name}')" type="button" class="btn btn-primary">ลบรายการ</button></td>
             </tr>`;
+                    }
+                    $('#listdate').html(html);
                 }
-                $('#listdate').html(html);
+
+
             }
         });
     }
