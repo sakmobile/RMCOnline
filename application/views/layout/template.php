@@ -9,23 +9,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/fontawesome-free/css/all.css">
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
+   <!-- DataTables -->
+   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2/css/select2.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Theme style -->
+
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Toastr -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/toastr/toastr.min.css">
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-
-
-  <link href="https://fonts.googleapis.com/css?family=Kanit:400" rel="stylesheet">
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/toastr/toastr.min.css">
-  <link href="<?php echo base_url() ?>assets/plugins/bootstrap-tagsinput/tagsinput.css?v=11" rel="stylesheet" type="text/css">
-  <script src="<?php echo base_url() ?>assets/bower_components/ckeditor/ckeditor.js"></script>
-
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/adminlte.min.css">
   <style>
     body {
       font-family: 'Kanit', sans-serif;
@@ -38,6 +43,14 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
 
   <div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="<?php echo base_url() ?>assets/dist/img/loading-unscreen.gif" alt="AdminLTELogo" height="65%" width="50%">
+  </div>
+
+
+
     <?php $this->load->view('layout/header'); ?>
     <?php $this->load->view('layout/menu'); ?>
     <div class="content-wrapper">
@@ -87,28 +100,84 @@
 
 <script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
 
+<script src="<?php echo base_url() ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Bootstrap 4 -->
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/datatables/jquery.dataTables.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/bootstrap-tagsinput/tagsinput.js?v=1"></script>
 
+<!-- InputMask -->
+<script src="<?php echo base_url() ?>assets/plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="<?php echo base_url() ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/select2/js/select2.full.min.js"></script>
-
+<!-- Toastr -->
+<script src="<?php echo base_url() ?>assets/plugins/toastr/toastr.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?php echo base_url() ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/dist/js/adminlte.min.js"></script>
 
-<!-- <script src="<?php //echo base_url()
-                  ?>assets/dist/js/demo.js"></script> -->
-<script src="<?php echo base_url() ?>assets/dist/js/bootstrap-show-password.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url() ?>assets/plugins/toastr/toastr.min.js"></script>
-<!--<script src="<?php echo base_url() ?>assets/dist/js/pages/dashboard3.js?v=51"></script>
 
-<script src="<?php //echo base_url()
-              ?>assets/plugins/chart.js/Chart.min.js"></script> -->
+  <!--
+<script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+
+
+<script src="<?php echo base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+
+  -->
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap-tagsinput/tagsinput.js?v=1"></script>
+<script src="<?php echo base_url() ?>assets/dist/js/bootstrap-show-password.js"></script>
+<!--
+<script src="<?php echo base_url() ?>assets/plugins/toastr/toastr.min.js"></script>
+
+
               <script src="<?php echo base_url()?>assets/plugins/toastr/toastr.min.js"></script>
+  -->
+ 
+  <script>
+  $.widget.bridge('uibutton', $.ui.button)
+  bsCustomFileInput.init();
+  </script>
 <script>
+  
   $(document).ready(function() {
+   
+
 
     $('.select2').select2({
       theme: 'bootstrap4'
@@ -205,9 +274,13 @@
 
 <script>
   $(function() {
+    
+
     $('#example1').DataTable({
-        "order": [[8, "desc" ]]
-    } )
+        "order": [[8, "desc" ]],
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example3').DataTable({
         "order": [[8, "desc" ]]
     } )
@@ -219,11 +292,14 @@
       'info': true,
       'autoWidth': false
     })
-    $('#example4').DataTable()
-    $('#example5').DataTable()
+    $('#example4').DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+    $('#example5').DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example5_wrapper .col-md-6:eq(0)');
 
-
-
-
-  })
+  });
 </script>

@@ -52,6 +52,21 @@ class pasadu_model extends CI_Model
            return false;
        }
     }
+    function getMaxID()
+    {
+
+        $sql_query = "SELECT * FROM  pasadu ORDER BY `Pasadu ID` DESC LIMIT 1 ;";
+        // $this->db->select('*');
+        // $this->db->from('pasadu');
+        // $this->db->where("`Pasadu ID`", $code);
+        $query =  $this->db->query($sql_query);
+        //$query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 
    
     
