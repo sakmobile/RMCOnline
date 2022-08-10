@@ -23,6 +23,7 @@
                 </thead>
                 <tbody>
                 <?php 
+                if($job != ''){
              foreach ($job as $row) { ?>
               <tr>
                 <td>
@@ -71,7 +72,7 @@
                             </td>
 
               </tr>
-              <?php } ?>
+              <?php }} ?>
 
                 </tbody>
             </table>
