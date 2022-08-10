@@ -162,6 +162,7 @@
   -->
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap-tagsinput/tagsinput.js?v=1"></script>
 <script src="<?php echo base_url() ?>assets/dist/js/bootstrap-show-password.js"></script>
+<script src="<?php echo base_url() ?>assets/dist/js/table.js?v=22"></script>
 <!--
 <script src="<?php echo base_url() ?>assets/plugins/toastr/toastr.min.js"></script>
 
@@ -300,6 +301,10 @@
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example5_wrapper .col-md-6:eq(0)');
+    $('#example9').DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example9_wrapper .col-md-6:eq(0)');
 
   });
 </script>

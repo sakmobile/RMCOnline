@@ -1,284 +1,202 @@
 ﻿
-$(function () {  
-   
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $("#example2").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+$(function () { 
 
-   
-    $('#an').on('keypress', function (e) {
-        if (e.which === 13) {
-            findAn();
-        }
-    });
-    $('#hn').on('keypress', function (e) {
-        if (e.which === 13) {
-            findHn();
-        }
-    });
-    $("#Save").attr("disabled", true);
-    $('#reservation').daterangepicker({
-        language: 'th-th'
-    }, function (start, end, label) {
-        console.log("A new date selection was made:" + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
 
-      
-        location.href = "/Search/Index?start=" + start.format('YYYY-MM-DD') + "&end=" + end.format('YYYY-MM-DD');
-       // Search(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
 
-    });
-
+$('#update_things').hide();      
 });
-function Search(startdate, enddate) {
+function edit(id){
+
     $.ajax({
-        type: "POST",
-        url: "/Search/GetSearch",
-        data: { start: startdate, end: enddate },
-        dataType: "json",
-        success: function (data) {
-            if (data == "ไม่พบข้อมูล") {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'ไม่พบข้อมูลที่ค้นหา'
-                })
-            } else {
-               // var res = JSON.parse(data);
-                console.log(data);
-                console.log(typeof (data));
-
-                var himdbhtml = "";
-                for (var i = 0; i < data.length; i++) {
-                    himdbhtml += "<tr><td>" + data[i]['date_admit'] + "</td>";
-                    himdbhtml += "<td>" + data[i]['date_dsc'] + "</td>";
-                    himdbhtml += "<td>" + data[i]['an'] + "</td>";
-                    himdbhtml += "<td>" + data[i]['hn'] + "</td>";
-                    himdbhtml += "<td>" + data[i]['fullname'] + "</td>";
-                    himdbhtml += "<td>" + data[i]['doctor_dsc'] + "</td></tr>";
-                  
-                }
-                $('#moph-data').append(himdbhtml);
-            }
-          
-           
-
+        url: './Things/Edit',
+        type: 'post',
+        data: {
+          id_ :  id,
         },
-        error: function () {
-            alert("Error occured!!")
-        }
-    });
-}
-var Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-});
-function findAn() {
- 
-    var an = $('#an').val();
-    var regdate = $('#regdate').val();
-    if (regdate != '') {
-        if (an != '') {
-            console.log(regdate +" /"+an);
-            $.ajax({
-                type: "POST",
-                url: "/Home/GetDataAN",
-                data: { _an: an, _regdata: regdate },
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-
-
-                    if (!data.length) {
-                        Toast.fire({
-                            icon: 'warning',
-                            title: 'ไม่พบข้อมูลที่ค้นหา'
-                        })
-                    } else {
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'ดึงข้อมูลสำเร็จ'
-                        });
-                        $("#an_set").val(data[0].an);
-                        $("#hn_set").val(data[0].hn);
-                        $("#fullname").val(data[0].name);
-                        $("#dateAdmit").val(data[0].regdate);
-                        $("#dateDC").val(data[0].datedsc);
-                        $("#doctor").val(data[0].dsc_doctor);
-                        $("#name_recorder").val(data[0].dsc_officer);
-                        $("#Save").attr("disabled", false);
-                        
-                    }
-
-                },
-                error: function () {
-                    alert("Error occured!!")
-                }
-            }); 
-        } else {
-            Toast.fire({
-                icon: 'warning',
-                title: 'กรุณากรอก AN ก่อน'
-            })
-        }
-    } else {
-        Toast.fire({
-            icon: 'warning',
-            title: 'กรุณากรอก วันที่ Admit ก่อน'
-        })
-    }
-    
-   
-}
-
-function findHn() {
-     hn = $('#hn').val();
-     regdate = $('#regdate').val();
-    if (regdate != '') {
-        if (hn != '') { 
-            var Data_ipd = { _hn:hn , _regdata: regdate };
-            $.ajax({
-                type: "POST",
-                url: "/Home/GetData",
-                data: { _hn: hn, _regdata: regdate },
-            dataType: "json"  ,
-            success: function (data) {
-                console.log(data);
-                
-
-                if (!data.length) {
-                    Toast.fire({
-                        icon: 'warning',
-                        title: 'ไม่พบข้อมูลที่ค้นหา'
-                    })
-                } else {
-
-                    $("#an_set").val(data[0].an);
-                    $("#hn_set").val(data[0].hn);
-                    $("#fullname").val(data[0].name);
-                    $("#dateAdmit").val(data[0].regdate);
-                    $("#dateDC").val(data[0].datedsc);
-                    $("#doctor").val(data[0].dsc_doctor);
-                    $("#name_recorder").val(data[0].dsc_officer);
-                    $("#Save").attr("disabled", false);
-                }
-               
-            },
-            error: function () {
-                alert("Error occured!!")
-            }
-        });  
-    } else {
-        Toast.fire({
-            icon: 'warning',
-            title: 'กรุณากรอก HN ก่อน'
-        })
-        }
-    } else {
-        Toast.fire({
-            icon: 'warning',
-            title: 'กรุณากรอก วันที่ Admit ก่อน'
-        })
-    }
-}
-
-
-function Save() {
-   
-    var an_set = $("#an_set").val();
-    var hn_set = $("#hn_set").val();
-    var fullname = $("#fullname").val();
-    var dateAdmit = $("#dateAdmit").val();
-    var dateDC = $("#dateDC").val();
-    var doctor = $("#doctor").val();
-    var name_recorder = $("#name_recorder").val();
-    var file = $("#file")[0].files[0];
-  //  var _fromdata = new FormData();
-   // _fromdata.append("file", file);
-   // console.log(file.type);
-    var fileExtension = ['pdf'];
-    if (file != "") {
-        if (file.type != "application/pdf") {
-            Toast.fire({
-                icon: 'warning',
-                title: 'ประเภทไฟล์ไม่ถูกต้อง'
-            })
-        } else {
-            var data = JSON.stringify({
-                an: an_set,
-                hn: hn_set,
-                fullname: fullname,
-                dateadmin: dateAdmit,
-                datedc: dateDC,
-                doctor: doctor,
-                name_r: name_recorder,
-                file: file
-            });
-            var _fromdata = new FormData();
-            _fromdata.append("file", file);
-            _fromdata.append("fullname", fullname);
-            _fromdata.append("an", an_set);
-            _fromdata.append("hn", hn_set);
-            _fromdata.append("dateadmin", dateAdmit);
-            _fromdata.append("datedc", dateDC);
-            _fromdata.append("doctor", doctor);
-            _fromdata.append("name_r", name_recorder);
-            
-
-            $.ajax({
-                type: "POST",
-                url: "/Home/SaveData",
-                data: _fromdata,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    console.log(data);
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'บันทึกข้อมูลสำเร็จ...'
-                    })
-                    location.reload();
-                },
-                error: function () {
-                    alert("Error occured!!")
-                }
-            });
-        }
-    } else {
-        Toast.fire({
-            icon: 'warning',
-            title: 'กรุณาเลือกไฟล์ PDF ก่อนบันทึก'
-        })
-    }
-   
-}
-
-function Del(file,an) {
-   
-    $.ajax({
-        type: "POST",
-        url: "/Home/Delete",
-        data: { del_file: file, del_an: an },
-        dataType: "json",
-        success: function (data) {
+        success: function(response) {
+          if(response){
+            var data = JSON.parse(response);
             console.log(data);
-            if (data) {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'ลบข้อมูลสำเร็จ...'
-                })
-                location.reload();
-            }
+            $('#id').val(data[0]['Pasadu ID']);
+            $('#Noid').val(data[0]['Noid']);
+            $('#NAME').val(data[0]['NAME']);
+            $('#Model').val(data[0]['Model']);
+            $('#SERIAL_NO').val(data[0]['SERIAL_NO']);
+            $('#PERUNIT').val(data[0]['PERUNIT']);
+            $('#RECEIVE').val(data[0]['RECEIVE']);
+            var now = new Date(data[0]['RECEIVE']);
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+            var date_sum = new Date(data[0]['วันที่คำนวณ']);
+            var day_ = ("0" + date_sum.getDate()).slice(-2);
+            var month_ = ("0" + (date_sum.getMonth() + 1)).slice(-2);
+            var sum_ = date_sum.getFullYear()+"-"+(month_)+"-"+(day_) ;
+            $('#RECEIVE').val(today);
+            $('#date_sum').val(sum_);    
+            var num = parseFloat(data[0]['ค่าเสื่อมสะสม']);
+            var num1 = parseFloat(data[0]['มูลค่าสุทธิ']);
+            $('#data_ss').val(num.toFixed(2));
+            $('#sum').val(num1.toFixed(2));
+            $('#NOID_Old').val(data[0]['NOID-Old']);
+            $('#Exp').val(data[0]['อายุการใช้งาน']);
+            $('#ks1').val(data[0]['ค่าซาก1']);
+            $('#ks').val(data[0]['ค่าซาก']);
+            $('#update_things').show(); 
+            $('#save_things').hide(); 
+            var $newOption = $("<option selected='selected'></option>").val(data[0]['COMPANY']).text(data[0]['COMPANY']) 
+            $("#company").append($newOption).trigger('change');
+            var $pasadu_oder = $("<option selected='selected'></option>").val(data[0]['Section oder']).text(data[0]['Section oder']) 
+            $("#pasadu_oder").append($pasadu_oder).trigger('change');
+            var $ttype = $("<option selected='selected'></option>").val(data[0]['TYPE']).text(data[0]['TYPE']) 
+            $("#ttype").append($ttype).trigger('change');
+            var $way = $("<option selected='selected'></option>").val(data[0]['TMONEY']).text(data[0]['TMONEY']) 
+            $("#way").append($way).trigger('change');
+            var $budge = $("<option selected='selected'></option>").val(data[0]['KMONEY']).text(data[0]['KMONEY']) 
+            $("#budge").append($budge).trigger('change');
+            var $new_date = $("<option selected='selected'></option>").val(data[0]['New Date']).text(data[0]['New Date']) 
+            $("#new_date").append($new_date).trigger('change');
+            var $year_ng = $("<option selected='selected'></option>").val(data[0]['ปีงบ']).text(data[0]['ปีงบ']) 
+            $("#year_ng").append($year_ng).trigger('change');
+            var approve = new Date(data[0]['วันที่']);
+            var day_approve = ("0" + approve.getDate()).slice(-2);
+            var month_approve = ("0" + (approve.getMonth() + 1)).slice(-2);
+            $('#approve').val(approve.getFullYear()+"-"+(month_approve)+"-"+(day_approve));
+            var Expire = new Date(data[0]['Expire DOC Date']);
+            var day_Expire = ("0" + Expire.getDate()).slice(-2);
+            var month_Expire = ("0" + (Expire.getMonth() + 1)).slice(-2);
+            $('#doc_date').val(Expire.getFullYear()+"-"+(month_Expire)+"-"+(day_Expire));
+            $('#doc').val(data[0]['DOCNO']);
+          }else{
 
-        },
-        error: function () {
-            alert("Error occured!!")
+          }
+
+    
         }
+      });
+
+    
+}
+
+function del(id){
+  var result = confirm("คุณต้องการลบ ID = "+id+" หรือไม่?");
+  if (result) {
+    $.ajax({
+      url: './Things/del',
+      type: 'post',
+      data: {
+        id_ :  id,
+      },
+      success: function(response) {
+        var data = JSON.parse(response);
+        location.reload();
+        if(data == true){
+          toastr["success"]("ลบข้อมูลสำเร็จ");
+        }else{
+          toastr["warning"]("เกิดข้อผิดพลาด !......");
+        }
+
+      }
     });
+  }
+}
+
+function save_things(id){
+  
+  $.ajax({
+    url: './Things/add',
+    type: 'post',
+    data: {
+      Noid: $('#Noid').val(),
+      NAME: $('#NAME').val(),
+      Model: $('#Model').val(),
+      SERIAL_NO: $('#SERIAL_NO').val(),
+      company: $("#company").val(),
+      pasadu_oder: $("#pasadu_oder").val(),
+      ttype: $("#ttype").val(),
+      way: $("#way").val(),
+      budge: $("#budge").val(),
+      PERUNIT: $('#PERUNIT').val(),
+      RECEIVE: $('#RECEIVE').val(),
+      NOID_Old: $('#NOID_Old').val(),
+      Exp: $('#Exp').val(),
+      ks1: $('#ks1').val(),
+      ks: $('#ks').val(),
+
+      date_sum: $('#date_sum').val(),    
+      data_ss: $('#data_ss').val(),
+      sum: $('#sum').val(),
+
+      doc: $("#doc").val(),
+      doc_date: $("#doc_date").val(),
+      approve: $('#approve').val(),
+
+      new_date: $("#new_date").val(),
+      year_ng: $("#year_ng").val()
+    },
+    success: function(response) {
+      var data = JSON.parse(response);
+      location.reload();
+      if(data == true){
+        toastr["success"]("บันทึกข้อมูลสำเร็จ");
+      }else{
+        toastr["warning"]("เกิดข้อผิดพลาด !......");
+      }
+    }
+    });
+  
+}
+
+function update_things(){
+  var id = $('#id').val();
+  $.ajax({
+    url: './Things/update',
+    type: 'post',
+    data: {
+      id_:id,
+      Noid: $('#Noid').val(),
+      NAME: $('#NAME').val(),
+      Model: $('#Model').val(),
+      SERIAL_NO: $('#SERIAL_NO').val(),
+      company: $("#company").val(),
+      pasadu_oder: $("#pasadu_oder").val(),
+      ttype: $("#ttype").val(),
+      way: $("#way").val(),
+      budge: $("#budge").val(),
+      PERUNIT: $('#PERUNIT').val(),
+      RECEIVE: $('#RECEIVE').val(),
+      NOID_Old: $('#NOID_Old').val(),
+      Exp: $('#Exp').val(),
+      ks1: $('#ks1').val(),
+      ks: $('#ks').val(),
+
+      date_sum: $('#date_sum').val(),    
+      data_ss: $('#data_ss').val(),
+      sum: $('#sum').val(),
+
+      doc: $("#doc").val(),
+      doc_date: $("#doc_date").val(),
+      approve: $('#approve').val(),
+
+      new_date: $("#new_date").val(),
+      year_ng: $("#year_ng").val()
+    },
+    success: function(response) {
+      var data = JSON.parse(response);
+        console.log(data);
+        location.reload();
+        if(data == true){
+          toastr["success"]("แก้ไขข้อมูลสำเร็จ");
+        }else{
+          toastr["warning"]("เกิดข้อผิดพลาด !......");
+        }
+       
+    }
+    });
+}
+function send_data(){
+  
+}
+function formatDate(nowDate) {
+  return nowDate.getFullYear() +"-"+ (nowDate.getMonth() + 1) + '-'+ nowDate.getDate();
 }

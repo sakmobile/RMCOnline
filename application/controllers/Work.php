@@ -29,7 +29,7 @@ class Work extends CI_Controller
 			$data['success'] = $this->work_model->get_success($name, $status);
 			$data['workking'] = $this->work_model->get_workking($name, $status1);
 			$data['des'] = $this->work_model->get_des($name, $status2);
-    
+			$data['count'] = $this->job_model->countRow();	
 			$this->load->view('/layout/template', $data);
 		}
 	}

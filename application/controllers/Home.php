@@ -20,7 +20,7 @@ class Home extends CI_Controller
 			];
 
 			$data['job_user'] = $this->job_model->get_boss($this->session->name);
-
+			$data['personal'] = $this->job_model->get_personal();
 			$data['section'] = $this->section_model->get_section();
 			$data['pasadu'] = $this->pasadu_model->get_pasadu();
 			$data['activity'] = $this->activity_model->get_activity();
@@ -46,6 +46,7 @@ class Home extends CI_Controller
 
 
 			$workid  =	$this->job_model->get_jobid();
+
 			$text = "MAX(`JOB Work ID`)";
 			$idjob = $workid[0][$text];
 			$sum = $idjob + 1;
@@ -61,49 +62,49 @@ class Home extends CI_Controller
 
 
 			//$this->job_model->save($data);
-			 if ($compe == 1) {
+			// if ($compe == 1) {
 
-			$success = 'success';
-			echo $success;
-				$message =
-					"\n" .
-					'วันที่แจ้ง: ' .
-					$datenow .
-					"\n" .
-					'ผู้แจ้ง: ' .
-					$this->input->post('boss') .
-					"\n" .
-					'เบอร์โทร : ' .
-					$to .
-					"\n" .
-					'หน่วยงานที่แจ้ง: ' .
-					$this->input->post('section') .
-					"\n" .
-					'ครุภัณฑ์: ' .
-					$this->input->post('name') .
-					"\n" .
-					'ยี่ห้อ/รุ่น: ' .
-					$this->input->post('Model') .
-					"\n" .
-					'ความเร่งด่วน: ' .
-					$this->input->post('lavel') .
-					"\n" .
-					'แจ้งช่าง: ' .
-					$this->input->post('man_repair') .
-					"\n" .
-					'สาเหต/อาการ: ' .
-					$this->input->post('cause') .
-					"\n" .
-					'บันทึกส่งซ่อม: ' .
-					$this->input->post('text_paper') .
-					"\n";
-				$this->sendlinemesg();
-				header('Content-Type: text/html; charset=utf8');
-				$res = notify_message($message);
-			} else {
-				$error = "error";
-				echo $error;
-			}
+			// 	$success = 'success';
+			// 	echo $success;
+			// 	$message =
+			// 		"\n" .
+			// 		'วันที่แจ้ง: ' .
+			// 		$datenow .
+			// 		"\n" .
+			// 		'ผู้แจ้ง: ' .
+			// 		$this->input->post('boss') .
+			// 		"\n" .
+			// 		'เบอร์โทร : ' .
+			// 		$to .
+			// 		"\n" .
+			// 		'หน่วยงานที่แจ้ง: ' .
+			// 		$this->input->post('section') .
+			// 		"\n" .
+			// 		'ครุภัณฑ์: ' .
+			// 		$this->input->post('name') .
+			// 		"\n" .
+			// 		'ยี่ห้อ/รุ่น: ' .
+			// 		$this->input->post('Model') .
+			// 		"\n" .
+			// 		'ความเร่งด่วน: ' .
+			// 		$this->input->post('lavel') .
+			// 		"\n" .
+			// 		'แจ้งช่าง: ' .
+			// 		$this->input->post('man_repair') .
+			// 		"\n" .
+			// 		'สาเหต/อาการ: ' .
+			// 		$this->input->post('cause') .
+			// 		"\n" .
+			// 		'บันทึกส่งซ่อม: ' .
+			// 		$this->input->post('text_paper') .
+			// 		"\n";
+			// 	$this->sendlinemesg();
+			// 	header('Content-Type: text/html; charset=utf8');
+			// 	$res = notify_message($message);
+			// } else {
+			// 	$error = "error";
+			// 	echo $error;
+			// }
 		}
 	}
 
@@ -112,8 +113,9 @@ class Home extends CI_Controller
 
 	function sendlinemesg()
 	{
+		$token = $this->job_model->get_token();
 		define('LINE_API', "https://notify-api.line.me/api/notify");
-		define('LINE_TOKEN', "EGZ4JeLqupjdMnphrdGZoeq0O7ulu0pwJqsrLk9g9jh"); //เปลี่ยนใส่ Token ของเราที่นี่ 
+		define('LINE_TOKEN', $token[0]->token); //เปลี่ยนใส่ Token ของเราที่นี่ 
 
 		function notify_message($message)
 		{

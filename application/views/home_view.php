@@ -95,10 +95,9 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">ช่าง</label>
                         <select class="form-control select2 " id="man_repair" style="width: 100%;">
-                            <option value="1"> นายเตชสิทธิ์ กำเนิด</option>
-                            <option value="2"> นายเอกชัย สุภาพันธ์</option>
-                            <option value="3"> นายวีรชัย อ่อนมณี</option>
-                            <option value="4"> นายนิวัฒน์ สุกวัน</option>
+                       <?php foreach ($personal as $row) : ?>
+                                <option value="<?php echo $row->Name; ?>"><?php echo $row->Name; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">

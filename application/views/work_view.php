@@ -392,6 +392,61 @@
             </div>
 
         </div>
+
+        <div class="card " >
+            <div class="card-header bg-info">
+                <h3 class="card-title">รายงาน</h3>
+            </div>
+
+            <div class="card-body">
+            <table id="example9" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <thead>
+                        <tr role="row" class="info">
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 1%;">ID</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ครุภัณฑ์</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ยี่ห้อ/รุ่น</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">S/N</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 10%;">ครั้งที่ซ่อม</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($count  != false) {
+                            foreach ($count as $row) { ?>
+                                <tr>
+                                    <td>
+                                        <?php
+                                        echo $row->id; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $row->Equipment; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $row->Detial; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $row->SN; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->num_of_time; ?>
+                                    </td>
+                                  
+                                    
+                                    
+                                </tr>
+                        <?php }
+                        } ?>
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+    </div>
     </div>
 
 

@@ -7,10 +7,38 @@ class job_model extends CI_Model
         parent::__construct();
         
     }
+
+    public function countRow(){
+        $query = $this->db->query("SELECT `Karupan No` AS id,Equipment ,Detial,`Serial No` AS SN, COUNT(`Karupan No`) AS num_of_time FROM job GROUP BY `Karupan No`");
+            return $query->result();
+        }
     function get_job()
     {
         $this->db->select('*');
         $this->db->from('job');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+    function get_token()
+    {
+        $this->db->select('*');
+        $this->db->from('tokenline');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    function get_personal()
+    {
+        $this->db->select('*');
+        $this->db->from('personal');
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
             return $query->result();
